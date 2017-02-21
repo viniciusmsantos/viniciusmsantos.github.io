@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Coiny');
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 50px; 
+  position: relative;
+  font-family: Verdana, sans-serif;
+  margin: 0;
+}
+
+h1{
+  font-size: 80px;
+}
+
+#Home {
+  padding-top: 50px;
+  color: #fff; 
+  background-color: #e8eaed;
+  background-image:url("http://empreendedorx.com.br/wp-content/uploads/2016/07/56_sites_portfolio2.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 800px;
+  margin-top: -6%;
+  text-align: center;
+}
+
+.name {
+ padding-top: 160px;
+ font-family: Bungee;
+}
+
+#info {
+  padding: 50px 0;
+}
+
+#sobre{
+  background-color: #337ab7;
+}
+.sobre {
+  padding: 50px 0;
+}
+
+.sobre-item {
+  margin-bottom: 30px;
+}
+
+#portifolio {
+  background-color: #ffb302;
+  height: 500px;
+}
+.portfolio {
+  padding: 50px 0;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.img-portfolio {
+  margin: 0 auto;
+}
+
+.img-portfolio:hover {
+  opacity: 0.8;
+}
+
+#contato {
+  padding: 100px 0;
+}
+
+.navbar {
+  opacity: 0.8;
+
+}
+
+.navbar {
+ font-size: 1.3em;
+}
+
+.navbrandstyle {
+  font-family: 'Rock Salt', cursive; 
+  color:white; 
+  font-weight: bold
+}
+
+.navstyle {
+  font-family: 'Coiny', cursive;
+}
+

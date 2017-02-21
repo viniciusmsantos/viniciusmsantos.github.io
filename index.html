@@ -1,23 +1,206 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang ="pt-br" >
+<head>
 
-<div class="home">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Portifolio</title>
+  <link rel='stylesheet prefetch' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="font-mfizz-2.3.0/font-mfizz.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
 
-  <h1 class="page-heading">Posts</h1>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+  <!--Navbar-->
+  <header>
+    <nav class="navbar navbar-inverse navbar-fixed-top nav-pills">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand navbrandstyle" href="#">Vinicius Martins</a>
+        </div>
+        <div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right navstyle">
+              <li class="active"><a href="#Home">Home</a></li>
+              <li><a href="#sobre">Sobre mim</a></li>
+              <li><a href="#portfolio">Portifólio</a></li>
+              <li><a href="#contato">Contato</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!--End Navbar-->
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <div class="content">
+    <!-- Home-->
+    <section id="Home" >
+      <div class="container name">
+        <h1>VINICIUS MARTINS</h1>
+        <h2>Web Developer</h2>
+      </div>
+    </section>
 
+
+    <!-- end home-->
+
+    <!-- info -->
+    <section id="info" class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Olá meu nome é Vinicius e sou desenveldor front end!</h2>
+          <p>Apaixonado por desenvolvimento web e em constante busca por aprendizado</p>
+          <p>E batman nas horas vagas! (ok não sou o batman ☹)</p>
+        </div>
+      </div>
+    </section>
+    <!-- end info -->
+
+    <!--sobre-->
+    <section id="sobre" class="sobre bg-primary">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-lg-10 col-lg-offset-1">
+           <h2>Minhas Habilidades</h2>
+           <hr class="small">
+           <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <div class="sobre-item">
+                <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-html5 fa-stack-1x text-primary"></i></span>
+                <h4>
+                  <strong>HTML5</strong>
+                </h4>
+
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="sobre-item">
+                <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-css3 fa-stack-1x text-primary"></i></span>
+                <h4>
+                  <strong>CSS 3 </strong>
+                </h4>
+
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="sobre-item">
+                <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x"></i><i class="icon-javascript fa-stack-1x text-primary"></i></span>
+                <h4>
+                  <strong>Javascript</strong>
+                </h4>
+
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="sobre-item">
+                <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x"></i><i class="icon-nodejs fa-stack-1x text-primary"></i></span>
+                <h4>
+                  <strong>Jquery</strong>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end sobre-->
+
+  <!--Portifolio-->
+  <section id="portfolio" class="portfolio container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1 text-center">
+        <h2>Meus Trabalhos</h2>
+        <hr class="small">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="portfolio-item">
+              <a href="#">
+                <img class="img-portfolio img-responsive" alt="imagem do Portifolio" src="img/portfolio-1.jpg">
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="portfolio-item">
+              <a href="#">
+                <img class="img-portfolio img-responsive" alt="imagem do Portifolio" src="img/portfolio-2.jpg">
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="portfolio-item">
+              <a href="#">
+                <img class="img-portfolio img-responsive" alt="imagem do Portifolio" src="img/portfolio-3.jpg">
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="portfolio-item">
+              <a href="#">
+                <img class="img-portfolio img-responsive" alt="imagem do Portifolio" src="img/portfolio-4.jpg">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--end Portifolio-->
+  <hr class="small">
+  <!--Contato-->
+  <section id="contato">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 text-center">
+          <h4><strong>Entre em contato</strong>
+          </h4>
+          <ul class="list-unstyled">
+            <li><i class="fa fa-phone fa-fw"></i> (12)99708-8628</li>
+            <li><i class="fa fa-envelope-o fa-fw"></i>viniciusmarsan@gmail.com.com</li>
+          </ul>
+          <br>
+          <ul class="list-inline">
+            <li>
+              <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-github fa-fw fa-3x"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-linkedin fa-fw fa-3x"></i></a>
+            </li>
+          </ul>
+          <hr class="small">
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!--end Contato-->
+
+
+  <!--footer-->
+  <footer>
+    <p class="text-muted text-center">Copyright © Vinicius Martins 2017</p>
+  </footer>
 </div>
+
+<!--end footer-->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+</body>
+</html>
