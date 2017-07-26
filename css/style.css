@@ -1,1 +1,95 @@
-.hero,footer{border-top:1px solid #ccc}footer span,li p{font-style:italic}html{font-size:100%;overflow-y:scroll;-webkit-tap-highlight-color:transparent;-ms-text-size-adjust:100%;-webkit-text-size-adjust:none}body{margin:0;font-size:14px;line-height:1.61;font-weight:400;background:#fff}b,header p,strong{font-weight:700}body,button,input,select,textarea{font-family:'Open Sans',sans-serif;color:#333}a{color:#12C}a:visited{color:#61C}a:focus{outline:dotted thin}a:active,a:hover{color:#c00;outline:0}code,pre{font-family:monospace,monospace;font-size:1em}ol,ul{margin:1em 0;padding:0 0 0 20px}img{border:0;max-width:100%}.container,footer,header{max-width:45em;margin:0 auto}header{padding:0 .5em;color:#C90B0B}header img{border-radius:40px;float:left}header p{font-size:1.5em;padding-left:4em}header p span{font-size:.8em;font-weight:400}.hero{padding:2em;background-color:#f8f8f8;font-size:1.2em;border-bottom:1px solid #ccc}.content{padding:1em}.content li{list-style-type:none;font-size:1.1em}li img{float:left;padding-right:1em}li p{font-size:.9em}footer{padding:0 .5em}footer span{float:right}@media only screen and (max-width:480px){body{font-size:12px}header p{padding-left:4.5em}}
+@import url('https://fonts.googleapis.com/css?family=Coiny');
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 50px; 
+  position: relative;
+  font-family: Verdana, sans-serif;
+  margin: 0;
+}
+
+h1{
+  font-size: 80px;
+}
+
+#Home {
+  padding-top: 50px;
+  color: #fff; 
+  background-color: #e8eaed;
+  background-image:url("http://empreendedorx.com.br/wp-content/uploads/2016/07/56_sites_portfolio2.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 800px;
+  margin-top: -6%;
+  text-align: center;
+}
+
+.name {
+ padding-top: 160px;
+ font-family: Bungee;
+}
+
+#info {
+  padding: 50px 0;
+}
+
+#sobre{
+  background-color: #337ab7;
+}
+.sobre {
+  padding: 50px 0;
+}
+
+.sobre-item {
+  margin-bottom: 30px;
+}
+
+#portifolio {
+  background-color: #ffb302;
+  height: 500px;
+}
+.portfolio {
+  padding: 50px 0;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.img-portfolio {
+  margin: 0 auto;
+}
+
+.img-portfolio:hover {
+  opacity: 0.8;
+}
+
+#contato {
+  padding: 100px 0;
+}
+
+.navbar {
+  opacity: 0.8;
+
+}
+
+.navbar {
+ font-size: 1.3em;
+}
+
+.navbrandstyle {
+  font-family: 'Rock Salt', cursive; 
+  color:white; 
+  font-weight: bold
+}
+
+.navstyle {
+  font-family: 'Coiny', cursive;
+}
+

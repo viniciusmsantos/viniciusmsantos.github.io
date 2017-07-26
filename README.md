@@ -1,2 +1,2 @@
-# Meu portifólio pessoal
-esse portifólio foi parte do nanodegree front-end Udacity
+# udacity-portifolio
+projeto de portifolio Udacity
