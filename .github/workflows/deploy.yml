@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
           cache: 'npm'
 
       - name: Install dependencies
@@ -29,11 +29,16 @@ jobs:
       - name: Build Astro
         run: npm run build
 
+      # PASSO CORRIGIDO: Salva a pasta que o Astro gera (geralmente './dist') como artefato do Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
   deploy:
     name: Deploy to Pages
     needs: build
     runs-on: ubuntu-latest
-    # Movido para dentro do job de deploy onde o VS Code aceita perfeitamente
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
