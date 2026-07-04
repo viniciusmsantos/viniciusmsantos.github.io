@@ -1,59 +1,36 @@
-import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders";
-import { z } from "astro/zod";
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
-function removeDupsAndLowerCase(array: string[]) {
-	return [...new Set(array.map((str) => str.toLowerCase()))];
-}
-
-const titleSchema = z.string().max(60);
-
-const baseSchema = z.object({
-	title: titleSchema,
+const blogCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    date: z.coerce.date().default(() => new Date()),
+    updated: z.coerce.date().optional(),
+    tags: z.array(z.string()).default([]),
+    category: z.string().optional(),
+    cover: z.string().optional(),
+    series: z.string().optional(),
+    pinned: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
 });
 
-const post = defineCollection({
-	loader: glob({ base: "./content/posts", pattern: "**/*.{md,mdx}" }),
-	schema: ({ image }) =>
-		baseSchema.extend({
-			description: z.string(),
-			coverImage: z
-				.object({
-					alt: z.string(),
-					src: image(),
-				})
-				.optional(),
-			draft: z.boolean().default(false),
-			ogImage: z.string().optional(),
-			tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
-			publishDate: z
-				.string()
-				.or(z.date())
-				.transform((val) => new Date(val)),
-			updatedDate: z
-				.string()
-				.optional()
-				.transform((str) => (str ? new Date(str) : undefined)),
-			pinned: z.boolean().default(false),
-		}),
+const weeklyCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/weekly' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    date: z.coerce.date().default(() => new Date()),
+    tags: z.array(z.string()).default([]),
+    cover: z.string().optional(),
+    issue: z.number(),
+    draft: z.boolean().default(false),
+  }),
 });
 
-const note = defineCollection({
-	loader: glob({ base: "./content/notes", pattern: "**/*.{md,mdx}" }),
-	schema: baseSchema.extend({
-		description: z.string().optional(),
-		publishDate: z.iso
-			.datetime({ offset: true }) // Ensures ISO 8601 format with offsets allowed (e.g. "2024-01-01T00:00:00Z" and "2024-01-01T00:00:00+02:00")
-			.transform((val) => new Date(val)),
-	}),
-});
-
-const tag = defineCollection({
-	loader: glob({ base: "./content/tags", pattern: "**/*.{md,mdx}" }),
-	schema: z.object({
-		title: titleSchema.optional(),
-		description: z.string().optional(),
-	}),
-});
-
-export const collections = { post, note, tag };
+export const collections = {
+  blog: blogCollection,
+  weekly: weeklyCollection,
+};

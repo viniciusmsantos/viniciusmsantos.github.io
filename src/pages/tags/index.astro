@@ -1,34 +1,63 @@
 ---
-import { getAllPosts, getUniqueTagsWithCount } from "@/data/post";
-import PageLayout from "@/layouts/Base.astro";
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
 
-const allPosts = await getAllPosts();
-const allTags = getUniqueTagsWithCount(allPosts);
+const allPosts = await getCollection('blog');
 
-const meta = {
-	description: "A list of all the topics I've written about in my posts",
-	title: "All Tags",
-};
+const tagMap = new Map<string, number>();
+for (const post of allPosts) {
+  for (const tag of post.data.tags || []) {
+    tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+  }
+}
+
+const tags = Array.from(tagMap.entries())
+  .map(([name, count]) => ({ name, count }))
+  .sort((a, b) => b.count - a.count);
+
+const maxCount = tags.length > 0 ? tags[0].count : 1;
 ---
 
-<PageLayout meta={meta}>
-	<h1 class="title mb-6">Tags</h1>
-	<ul class="space-y-4">
-		{
-			allTags.map(([tag, val]) => (
-				<li class="flex items-center gap-x-2">
-					<a
-						class="cactus-link inline-block"
-						href={`/tags/${tag}/`}
-						title={`View posts with the tag: ${tag}`}
-					>
-						&#35;{tag}
-					</a>
-					<span class="inline-block">
-						- {val} Post{val > 1 && "s"}
-					</span>
-				</li>
-			))
-		}
-	</ul>
-</PageLayout>
+<BlogLayout title="Tags">
+  <header class="mb-10">
+    <p class="text-sm text-primary font-medium mb-2 tracking-wide uppercase">Tags</p>
+    <h1 class="text-3xl sm:text-4xl font-bold mb-3" data-pt="Nuvem de Tags" data-en="Tag Cloud">Nuvem de Tags</h1>
+    <p class="text-gray-500 dark:text-gray-400">
+      <span data-pt="Total de" data-en="Total of">Total de</span>
+      <span class="text-primary font-semibold">{tags.length}</span>
+      <span data-pt="tags" data-en="tags">tags</span>
+    </p>
+  </header>
+
+  <div class="relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30 dark:opacity-10" aria-hidden="true">
+      <defs>
+        <linearGradient id="tag-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0.1" />
+          <stop offset="100%" stop-color="var(--color-primary)" stop-opacity="0.02" />
+        </linearGradient>
+      </defs>
+      <circle cx="15%" cy="20%" r="80" fill="url(#tag-grad)" />
+      <circle cx="80%" cy="60%" r="120" fill="url(#tag-grad)" />
+      <circle cx="50%" cy="80%" r="60" fill="url(#tag-grad)" />
+      <path d="M10 50 Q 30 20 60 50 T 110 50" stroke="var(--color-primary)" stroke-opacity="0.08" fill="none" stroke-width="1" />
+      <path d="M20 80 Q 50 50 80 80 T 140 80" stroke="var(--color-primary)" stroke-opacity="0.06" fill="none" stroke-width="1" />
+    </svg>
+
+    <div class="relative flex flex-wrap gap-3 justify-center py-4">
+      {tags.map((tag) => {
+        const ratio = tag.count / maxCount;
+        const sizeClass = ratio > 0.7 ? 'text-lg px-5 py-3' : ratio > 0.3 ? 'text-base px-4 py-2.5' : 'text-sm px-3 py-2';
+        return (
+          <a
+            href={`/tags/${tag.name}`}
+            class={`bg-white dark:bg-[var(--color-card-dark)] rounded-full shadow-sm hover:shadow-md hover:text-primary dark:hover:text-primary transition-all ${sizeClass}`}
+          >
+            <span class="font-medium">{tag.name}</span>
+            <sup class="text-xs text-gray-400 dark:text-gray-500 ml-0.5">{tag.count}</sup>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</BlogLayout>

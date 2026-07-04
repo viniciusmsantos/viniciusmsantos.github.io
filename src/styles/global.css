@@ -1,141 +1,391 @@
-@layer theme, base, pagefind, components, utilities;
+@import 'tailwindcss';
+@import 'katex/dist/katex.min.css';
+@plugin '@tailwindcss/typography';
 
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
-@import "tailwindcss/utilities.css" layer(utilities);
+@custom-variant dark (&:where(.dark, .dark *));
 
-/* tailwind to ignore satori generated og-image */
-@source not "../pages/og-image";
-/* config for tailwindcss-typography plugin */
-@config "../../tailwind.config.ts";
-
-/* use a selector-based strategy for dark mode */
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
-
-/* register custom colour properties */
-@property --color-global-bg {
-	syntax: "<color>";
-	inherits: true;
-	initial-value: oklch(98.48% 0 0);
-}
-@property --color-global-text {
-	syntax: "<color>";
-	inherits: true;
-	initial-value: oklch(26.99% 0.0096 235.05);
-}
-@property --color-muted {
-	syntax: "<color>";
-	inherits: true;
-	initial-value: oklch(44.6% 0.03 256.802);
-}
-@property --color-link {
-	syntax: "<color>";
-	inherits: true;
-	initial-value: oklch(55.44% 0.0431 185.69);
-}
-@property --color-accent {
-	syntax: "<color>";
-	inherits: true;
-	initial-value: oklch(55.27% 0.195 19.06);
-}
-@property --color-accent-2 {
-	syntax: "<color>";
-	inherits: true;
-	initial-value: oklch(18.15% 0 0);
-}
-@property --color-quote {
-	syntax: "<color>";
-	inherits: true;
-	initial-value: oklch(55.27% 0.195 19.06);
-}
-
-/* you could refactor below to use light-dark(), depending on your target audience */
 @theme {
-	--color-global-bg: oklch(98.48% 0 0);
-	--color-global-text: oklch(26.99% 0.0096 235.05);
-	--color-muted: oklch(44.6% 0.03 256.802);
-	--color-link: oklch(55.44% 0.0431 185.69);
-	--color-accent: oklch(55.27% 0.195 19.06);
-	--color-accent-2: oklch(18.15% 0 0);
-	--color-quote: oklch(55.27% 0.195 19.06);
+  --color-primary: #e9536a;
+  --color-primary-light: #f2a0ae;
+  --color-primary-dark: #c53050;
+
+  --color-bg-light: #f5f5f5;
+  --color-bg-dark: #1a1a2e;
+  --color-card-light: #ffffff;
+  --color-card-dark: #1e2a45;
+
+  --font-family-sans: 'Inter', 'Noto Sans SC', -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-@layer base {
-	html {
-		color-scheme: light dark;
-		accent-color: var(--color-accent);
-		scrollbar-gutter: stable;
-
-		&[data-theme="light"] {
-			color-scheme: light;
-		}
-
-		&[data-theme="dark"] {
-			color-scheme: dark;
-			--color-global-bg: oklch(23.64% 0.0045 248);
-			--color-global-text: oklch(83.54% 0 264);
-			--color-muted: oklch(70.7% 0.022 261.325);
-			--color-link: oklch(70.44% 0.1133 349);
-			--color-accent: oklch(70.91% 0.1415 163.7);
-			--color-accent-2: oklch(94.66% 0 0);
-			--color-quote: oklch(94.8% 0.106 136.49);
-		}
-
-		--color-mode-transition-duration: 300ms;
-		--color-mode-transition-easing: ease-in-out;
-
-		transition:
-			--color-global-bg var(--color-mode-transition-duration) var(--color-mode-transition-easing),
-			--color-global-text var(--color-mode-transition-duration) var(--color-mode-transition-easing),
-			--color-muted var(--color-mode-transition-duration) var(--color-mode-transition-easing),
-			--color-link var(--color-mode-transition-duration) var(--color-mode-transition-easing),
-			--color-accent var(--color-mode-transition-duration) var(--color-mode-transition-easing),
-			--color-accent-2 var(--color-mode-transition-duration) var(--color-mode-transition-easing),
-			--color-quote var(--color-mode-transition-duration) var(--color-mode-transition-easing);
-	}
-
-	:target {
-		scroll-margin-block: 5ex;
-	}
-
-	@view-transition {
-		navigation: auto;
-	}
-
-	/* Astro image responsive styles, modified from -> https://docs.astro.build/en/guides/images/#responsive-image-styles */
-	:where([data-astro-image]) {
-		object-fit: var(--fit);
-		object-position: var(--pos);
-	}
-	[data-astro-image="full-width"] {
-		width: 100%;
-	}
-	[data-astro-image="constrained"] {
-		max-width: 100%;
-	}
+:root {
+  --color-text: #2c3e50;
+  --color-text-secondary: #7f8c8d;
+  --color-bg: #f5f5f5;
+  --color-card: #ffffff;
+  --color-border: #e8e8e8;
+  --color-text-rgb: 44 62 80;
+  --color-text-secondary-rgb: 127 140 141;
+  --color-bg-rgb: 245 245 245;
+  --color-card-rgb: 255 255 255;
+  --color-border-rgb: 232 232 232;
+  --color-primary-rgb: 233 83 106;
+  --theme-transition-radius: 120vmax;
+  color-scheme: light;
 }
 
-@layer components {
-	@import "./components/admonition.css";
-	@import "./components/github-card.css";
-
-	.cactus-link {
-		@apply hover:decoration-link underline underline-offset-2 hover:decoration-2;
-	}
-
-	.title {
-		@apply text-accent-2 text-2xl font-semibold;
-	}
+:root.dark {
+  --color-text: #e8e8e8;
+  --color-text-secondary: #999999;
+  --color-bg: #1a1a2e;
+  --color-card: #1e2a45;
+  --color-border: #2a2a4a;
+  --color-text-rgb: 232 232 232;
+  --color-text-secondary-rgb: 153 153 153;
+  --color-bg-rgb: 26 26 46;
+  --color-card-rgb: 30 42 69;
+  --color-border-rgb: 42 42 74;
+  --color-primary-rgb: 242 160 174;
+  color-scheme: dark;
 }
 
-@utility prose {
-	--tw-prose-body: var(--color-global-text);
-	--tw-prose-bold: var(--color-global-text);
-	--tw-prose-bullets: var(--color-global-text);
-	--tw-prose-code: var(--color-global-text);
-	--tw-prose-headings: var(--color-accent-2);
-	--tw-prose-hr: 0.5px dashed #666;
-	--tw-prose-links: var(--color-global-text);
-	--tw-prose-quotes: var(--color-quote);
-	--tw-prose-th-borders: #666;
+html {
+  font-size: 17px;
 }
+
+@media (max-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  @apply transition-colors duration-300;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family-sans);
+  line-height: 1.75;
+}
+
+::selection {
+  @apply bg-primary/25;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.prose {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-code: var(--color-primary);
+  --tw-prose-quotes: var(--color-text-secondary);
+  --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-counters: var(--color-text-secondary);
+  --tw-prose-bullets: var(--color-primary);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-pre-bg: #1e1e2e;
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
+  max-width: none;
+}
+
+.dark .prose {
+  --tw-prose-code: var(--color-primary-light);
+}
+
+.prose :where(code):not(:where([class~='not-prose'] *)) {
+  font-weight: 500;
+}
+
+.prose :where(code):not(:where([class~='not-prose'] *))::before,
+.prose :where(code):not(:where([class~='not-prose'] *))::after {
+  content: '';
+}
+
+.prose pre {
+  @apply rounded-xl shadow-lg border border-gray-100 dark:border-gray-800;
+}
+
+/* Shiki dual themes: consume inline --shiki-dark variables in dark mode */
+.dark .astro-code {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg, transparent) !important;
+}
+
+.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+}
+
+.prose img {
+  @apply rounded-xl shadow-sm;
+}
+
+.prose a {
+  @apply no-underline font-medium transition-colors;
+  text-decoration-color: var(--color-primary);
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  @apply underline;
+}
+
+.prose h1 {
+  @apply text-2xl sm:text-3xl font-bold tracking-tight mt-10 mb-6;
+}
+
+.prose h2 {
+  @apply text-lg sm:text-xl font-semibold mt-10 mb-4 border-l-4 border-primary pl-4;
+}
+
+.prose h3 {
+  @apply text-base sm:text-lg font-semibold mt-8 mb-3 border-l-2 border-primary/30 pl-3;
+}
+
+.prose h4 {
+  @apply text-sm sm:text-base font-semibold mt-6 mb-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary/30 bg-gray-50 dark:bg-gray-800/30 rounded-r-lg;
+}
+
+.prose :is(table):not(:where([class~='not-prose'] *)) {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose :is(thead):not(:where([class~='not-prose'] *)) {
+  display: table-header-group;
+}
+
+.prose :is(tr):not(:where([class~='not-prose'] *)) {
+  display: table-row;
+}
+
+.prose :is(tbody):not(:where([class~='not-prose'] *)) {
+  display: table-row-group;
+}
+
+.prose :is(td, th):not(:where([class~='not-prose'] *)) {
+  display: table-cell;
+}
+
+.prose thead {
+  @apply bg-gray-50 dark:bg-gray-800/50;
+}
+
+.prose th {
+  @apply font-semibold;
+}
+
+.prose td,
+.prose th {
+  @apply px-4 py-2;
+}
+
+.prose ul > li::marker {
+  color: var(--color-primary);
+}
+
+.prose ol > li::marker {
+  color: var(--color-primary);
+}
+
+.prose hr {
+  @apply border-gray-200 dark:border-gray-700;
+}
+
+.card-hover {
+  @apply transition-all duration-300 ease-out;
+  will-change: transform, box-shadow;
+}
+
+.card-hover:hover {
+  @apply -translate-y-1 shadow-lg;
+}
+
+.dark .card-hover:hover {
+  @apply shadow-primary/10;
+}
+
+.code-block-wrapper {
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.code-block-wrapper .code-lang-label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+  font-size: 0.7rem;
+  font-family: var(--font-family-mono);
+  color: rgba(0, 0, 0, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.dark .code-block-wrapper .code-lang-label {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.code-block-wrapper .copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s, background-color 0.2s;
+}
+
+.dark .code-block-wrapper .copy-btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.code-block-wrapper:hover .copy-btn {
+  opacity: 1;
+}
+
+.code-block-wrapper .copy-btn:hover {
+  color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.dark .code-block-wrapper .copy-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.code-block-wrapper .copy-btn.copied {
+  color: #16a34a;
+  opacity: 1;
+}
+
+.dark .code-block-wrapper .copy-btn.copied {
+  color: #4ade80;
+}
+
+.code-block-wrapper pre {
+  counter-reset: line;
+}
+
+.code-block-wrapper pre code .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 0.85em;
+}
+
+.dark .code-block-wrapper pre code .line::before {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Grain overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+.dark .grain-overlay {
+  opacity: 0.04;
+  mix-blend-mode: screen;
+}
+
+/* Scroll reveal animations */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Theme transition sync */
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: background-color 0.6s ease,
+              color 0.6s ease,
+              border-color 0.6s ease,
+              box-shadow 0.6s ease,
+              fill 0.6s ease,
+              stroke 0.6s ease !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .grain-overlay {
+    display: none;
+  }
+}
+
+/* Card tilt */
+.card-tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Nav capsule morph */
+.nav-pill {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  backdrop-filter: blur(22px) saturate(1.08);
+  -webkit-backdrop-filter: blur(22px) saturate(1.08);
+  z-index: 50;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.6s ease,
+              box-shadow 0.6s ease;
+}
+

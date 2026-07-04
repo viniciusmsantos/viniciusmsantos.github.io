@@ -1,0 +1,46 @@
+---
+---
+
+<button
+  id="lang-toggle"
+  class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm font-medium"
+  aria-label="Alterar idioma / Switch language"
+>
+  <span class="lang-pt">PT</span>
+  <span class="lang-en hidden">EN</span>
+</button>
+
+<script is:inline>
+  (function() {
+    function init() {
+      var btn = document.getElementById('lang-toggle');
+      if (!btn) return;
+
+      function updateLabel() {
+        var locale = localStorage.getItem('locale') || 'pt';
+        var ptLabel = btn.querySelector('.lang-pt');
+        var enLabel = btn.querySelector('.lang-en');
+        if (locale === 'en') {
+          ptLabel?.classList.add('hidden');
+          enLabel?.classList.remove('hidden');
+        } else {
+          ptLabel?.classList.remove('hidden');
+          enLabel?.classList.add('hidden');
+        }
+      }
+
+      btn.addEventListener('click', function() {
+        var current = localStorage.getItem('locale') || 'pt';
+        var next = current === 'pt' ? 'en' : 'pt';
+        localStorage.setItem('locale', next);
+        updateLabel();
+        window.location.reload();
+      });
+
+      updateLabel();
+    }
+
+    init();
+    document.addEventListener('astro:after-swap', init);
+  })();
+</script>

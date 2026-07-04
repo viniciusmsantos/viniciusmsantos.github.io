@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const allPosts = await getCollection('blog');
+
+const categoryMap = new Map<string, { count: number; latestPost: any }>();
+
+for (const post of allPosts) {
+  const cat = post.data.category;
+  if (!cat) continue;
+  if (cat.includes('/')) {
+    const parts = cat.split('/');
+    for (let i = 0; i < parts.length; i++) {
+      const subCat = parts.slice(0, i + 1).join('/');
+      if (!categoryMap.has(subCat)) {
+        categoryMap.set(subCat, { count: 0, latestPost: post });
+      }
+      const entry = categoryMap.get(subCat)!;
+      entry.count++;
+    }
+  } else {
+    if (!categoryMap.has(cat)) {
+      categoryMap.set(cat, { count: 0, latestPost: post });
+    }
+    const entry = categoryMap.get(cat)!;
+    entry.count++;
+  }
+}
+
+const categories = Array.from(categoryMap.entries())
+  .map(([name, info]) => ({
+    name,
+    displayName: name.split('/').pop()!,
+    count: info.count,
+  }))
+  .sort((a, b) => b.count - a.count);
+
+const totalPosts = allPosts.length;
+---
+
+<BlogLayout title="Categorias">
+  <header class="mb-10">
+    <p class="text-sm text-primary font-medium mb-2 tracking-wide uppercase">Categories</p>
+    <h1 class="text-3xl sm:text-4xl font-bold mb-3" data-pt="Explorar Categorias" data-en="Explore Categories">Explorar Categorias</h1>
+    <p class="text-gray-500 dark:text-gray-400">
+      <span data-pt="Total de" data-en="Total of">Total de</span>
+      <span class="text-primary font-semibold">{categories.length}</span>
+      <span data-pt="categorias e" data-en="categories and">categorias e</span>
+      <span class="text-primary font-semibold">{totalPosts}</span>
+      <span data-pt="artigos" data-en="articles">artigos</span>
+    </p>
+  </header>
+
+  <div class="space-y-3">
+    {categories.map((cat, index) => (
+      <a
+        href={`/categories/${cat.name}`}
+        class="flex items-center gap-4 bg-white dark:bg-[var(--color-card-dark)] rounded-xl shadow-sm p-5 group hover:shadow-md transition-shadow"
+      >
+        <span class="text-sm font-mono text-gray-300 dark:text-gray-600 w-8 shrink-0">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <div class="flex-1 min-w-0">
+          <h2 class="font-semibold group-hover:text-primary transition-colors">
+            {cat.displayName}
+          </h2>
+          {cat.name !== cat.displayName && (
+            <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{cat.name}</p>
+          )}
+        </div>
+        <span class="text-sm text-gray-400 dark:text-gray-500 shrink-0">
+          {cat.count} <span data-pt="artigos" data-en="posts">artigos</span>
+        </span>
+        <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    ))}
+  </div>
+</BlogLayout>

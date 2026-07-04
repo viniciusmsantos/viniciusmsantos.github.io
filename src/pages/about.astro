@@ -1,36 +1,284 @@
 ---
-import PageLayout from "@/layouts/Base.astro";
-
-const meta = {
-	description: "I'm a starter theme for Astro.build",
-	title: "About",
-};
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE_AUTHOR } from '@/consts';
 ---
 
-<PageLayout meta={meta}>
-	<h1 class="title mb-12">About</h1>
-	<div class="prose prose-sm prose-cactus max-w-none">
-		<p>
-			Hi, I’m a starter Astro. I’m particularly great for getting you started with your own blogging
-			website.
-		</p>
-		<p>Here are my some of my awesome built in features:</p>
-		<ul class="list-inside list-disc" role="list">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
-		<p>
-			Clone or fork my <a
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
-				rel="noreferrer"
-				target="_blank">repo</a
-			> if you like me!
-		</p>
-	</div>
-</PageLayout>
+<BaseLayout title="Sobre Mim">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Profile Header -->
+    <header class="mb-12 text-center sm:text-left border-b border-gray-100 dark:border-gray-800 pb-10">
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        <img
+          src="https://github.com/viniciusmsantos.png"
+          alt={SITE_AUTHOR}
+          class="w-28 h-28 rounded-full object-cover ring-4 ring-primary/20"
+          width="112"
+          height="112"
+        />
+        <div class="space-y-2">
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            {SITE_AUTHOR}
+          </h1>
+          <p class="text-base sm:text-lg text-primary font-semibold leading-relaxed" data-pt="Engenheiro de Cibersegurança Júnior (AppSec) | Transição Estratégica de Carreira" data-en="Junior Cybersecurity Engineer (AppSec) | Strategic Career Transition">
+            Engenheiro de Cibersegurança Júnior (AppSec) | Transição Estratégica de Carreira
+          </p>
+          <div class="flex flex-wrap justify-center sm:justify-start gap-4 text-xs text-gray-500 dark:text-gray-400 mt-2">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span data-pt="Taubaté, SP, Brasil (Disponível para mudança)" data-en="Taubaté, SP, Brazil (Open to relocation)">Taubaté, SP, Brasil (Disponível para mudança)</span>
+            </span>
+            <a href="mailto:viniciusmarsan@gmail.com" class="flex items-center gap-1.5 hover:text-primary transition-colors">
+              <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>viniciusmarsan@gmail.com</span>
+            </a>
+            <a href="tel:+5512997938796" class="flex items-center gap-1.5 hover:text-primary transition-colors">
+              <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <span>+55 (12) 99793-8796</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 border-l-4 border-primary pl-3" data-pt="Resumo Profissional" data-en="Professional Summary">
+        Resumo Profissional
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm"
+         data-pt="Profissional de tecnologia com cerca de 9 anos de sólida bagagem em engenharia de software, arquitetura de sistemas escaláveis e desenvolvimento no ecossistema JavaScript, TypeScript, Node.js e APIs RESTful. Em transição para a área de Segurança de Aplicações (AppSec) e Engenharia de Segurança Defensiva/Ofensiva. Graduando em Cybersecurity pela FIAP (conclusão em 12/2026)."
+         data-en="Technology professional with around 9 years of solid experience in software engineering, scalable systems architecture, and development within the JavaScript, TypeScript, Node.js, and RESTful APIs ecosystem. Transitioning to Application Security (AppSec) and Defensive/Offensive Security Engineering. Currently studying Cybersecurity at FIAP (expected completion 12/2026).">
+        Profissional de tecnologia com cerca de 9 anos de sólida bagagem em engenharia de software, arquitetura de sistemas escaláveis e desenvolvimento no ecossistema JavaScript, TypeScript, Node.js e APIs RESTful. Em transição para a área de Segurança de Aplicações (AppSec) e Engenharia de Segurança Defensiva/Ofensiva. Graduando em Cybersecurity pela FIAP (conclusão em 12/2026).
+      </p>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-primary pl-3" data-pt="Competências Técnicas" data-en="Technical Skills">
+        Competências Técnicas
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Skill 1 -->
+        <div class="bg-gray-50/50 dark:bg-white/[0.02] p-4 rounded-xl border border-gray-100 dark:border-gray-800">
+          <h3 class="font-bold text-xs text-primary mb-2" data-pt="Segurança de Aplicações (AppSec)" data-en="Application Security (AppSec)">
+            Segurança de Aplicações (AppSec)
+          </h3>
+          <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+             data-pt="OWASP Top 10 (Web & API), Common Weakness Enumeration (CWE), Práticas de Codificação Segura (Secure Coding), Revisão Manual de Código (Code Review) e Modelagem de Ameaças."
+             data-en="OWASP Top 10 (Web & API), Common Weakness Enumeration (CWE), Secure Coding practices, Manual Code Review, and Threat Modeling.">
+            OWASP Top 10 (Web & API), Common Weakness Enumeration (CWE), Práticas de Codificação Segura (Secure Coding), Revisão Manual de Código (Code Review) e Modelagem de Ameaças.
+          </p>
+        </div>
+        <!-- Skill 2 -->
+        <div class="bg-gray-50/50 dark:bg-white/[0.02] p-4 rounded-xl border border-gray-100 dark:border-gray-800">
+          <h3 class="font-bold text-xs text-primary mb-2" data-pt="Ferramentas de Segurança" data-en="Security Tools">
+            Ferramentas de Segurança
+          </h3>
+          <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+             data-pt="SAST e SCA (Snyk, Semgrep, SonarQube), DAST (OWASP ZAP)."
+             data-en="SAST and SCA (Snyk, Semgrep, SonarQube), DAST (OWASP ZAP).">
+            SAST e SCA (Snyk, Semgrep, SonarQube), DAST (OWASP ZAP).
+          </p>
+        </div>
+        <!-- Skill 3 -->
+        <div class="bg-gray-50/50 dark:bg-white/[0.02] p-4 rounded-xl border border-gray-100 dark:border-gray-800">
+          <h3 class="font-bold text-xs text-primary mb-2" data-pt="DevOps & CI/CD" data-en="DevOps & CI/CD">
+            DevOps & CI/CD
+          </h3>
+          <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+             data-pt="Integração de ferramentas de segurança automatizadas em pipelines (GitHub Actions, Azure DevOps)."
+             data-en="Integration of automated security tools into CI/CD pipelines (GitHub Actions, Azure DevOps).">
+            Integração de ferramentas de segurança automatizadas em pipelines (GitHub Actions, Azure DevOps).
+          </p>
+        </div>
+        <!-- Skill 4 -->
+        <div class="bg-gray-50/50 dark:bg-white/[0.02] p-4 rounded-xl border border-gray-100 dark:border-gray-800">
+          <h3 class="font-bold text-xs text-primary mb-2" data-pt="Desenvolvimento & Automação" data-en="Development & Automation">
+            Desenvolvimento & Automação
+          </h3>
+          <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+             data-pt="TypeScript, Node.js, JavaScript, Python, Shell Script e programação fullstack para segurança."
+             data-en="TypeScript, Node.js, JavaScript, Python, Shell Script, and fullstack programming for security.">
+            TypeScript, Node.js, JavaScript, Python, Shell Script e programação fullstack para segurança.
+          </p>
+        </div>
+        <!-- Skill 5 -->
+        <div class="bg-gray-50/50 dark:bg-white/[0.02] p-4 rounded-xl border border-gray-100 dark:border-gray-800 md:col-span-2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <h3 class="font-bold text-xs text-primary mb-2" data-pt="Infraestrutura & Containers" data-en="Infrastructure & Containers">
+                Infraestrutura & Containers
+              </h3>
+              <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                 data-pt="Conteinerização com Docker, orquestração com Kubernetes e gerenciamento operacional em ambientes Linux."
+                 data-en="Containerization with Docker, orchestration with Kubernetes, and operational management in Linux environments.">
+                Conteinerização com Docker, orquestração com Kubernetes e gerenciamento operacional em ambientes Linux.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-bold text-xs text-primary mb-2" data-pt="Idiomas" data-en="Languages">
+                Idiomas
+              </h3>
+              <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                 data-pt="Inglês Intermediário para Avançado (proficiência técnica em leitura, escrita e conversação)."
+                 data-en="Intermediate to Advanced English (technical proficiency in reading, writing, and conversation).">
+                Inglês Intermediário para Avançado (proficiência técnica em leitura, escrita e conversação).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-8 border-l-4 border-primary pl-3" data-pt="Experiência Profissional" data-en="Professional Experience">
+        Experiência Profissional
+      </h2>
+      <div class="space-y-8 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-gray-100 dark:before:bg-gray-800/80">
+        <!-- Exp 1 -->
+        <div class="relative pl-10 group">
+          <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-white dark:bg-[var(--color-bg-dark)] border-2 border-primary group-hover:bg-primary transition-colors"></div>
+          <div class="space-y-1.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-bold text-sm text-gray-900 dark:text-white" data-pt="Desenvolvedor Front-end Sênior" data-en="Senior Front-end Developer">
+                Desenvolvedor Front-end Sênior
+              </h3>
+              <span class="text-xs font-mono text-gray-400">10/2025 – 03/2026</span>
+            </div>
+            <p class="text-xs font-medium text-primary">MB Labs</p>
+            <ul class="list-disc list-outside pl-4 text-xs text-gray-600 dark:text-gray-400 space-y-1">
+              <li data-pt="Desenvolvimento e arquitetura de interfaces críticas altamente estáveis utilizando ecossistemas modulares em React e TypeScript." data-en="Development and architecture of highly stable critical interfaces using modular ecosystems in React and TypeScript.">
+                Desenvolvimento e arquitetura de interfaces críticas altamente estáveis utilizando ecossistemas modulares em React e TypeScript.
+              </li>
+              <li data-pt="Atuação com escopo fullstack integrado, manipulando camadas de back-end em Node.js para garantir fluxos de dados íntegros e consumo seguro de APIs REST." data-en="Fullstack integrated scope, handling back-end layers in Node.js to ensure data integrity and secure consumption of REST APIs.">
+                Atuação com escopo fullstack integrado, manipulando camadas de back-end em Node.js para garantir fluxos de dados íntegros e consumo seguro de APIs REST.
+              </li>
+              <li data-pt="Mitigação ativa de vulnerabilidades lógicas de código em produção através da aplicação rigorosa de padrões de Clean Code, code review orientado à qualidade e boas práticas de engenharia." data-en="Active mitigation of logical vulnerabilities in production code through rigorous application of Clean Code standards, quality-oriented code review, and engineering best practices.">
+                Mitigação ativa de vulnerabilidades lógicas de código em produção através da aplicação rigorosa de padrões de Clean Code, code review orientado à qualidade e boas práticas de engenharia.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Exp 2 -->
+        <div class="relative pl-10 group">
+          <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-white dark:bg-[var(--color-bg-dark)] border-2 border-primary group-hover:bg-primary transition-colors"></div>
+          <div class="space-y-1.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-bold text-sm text-gray-900 dark:text-white" data-pt="Analista de Engenharia de Software" data-en="Software Engineering Analyst">
+                Analista de Engenharia de Software
+              </h3>
+              <span class="text-xs font-mono text-gray-400">09/2022 – 09/2025</span>
+            </div>
+            <p class="text-xs font-medium text-primary">Itaú Unibanco</p>
+            <ul class="list-disc list-outside pl-4 text-xs text-gray-600 dark:text-gray-400 space-y-1">
+              <li data-pt="Engenharia e sustentação de plataformas financeiras de larga escala (iCarros e Itaú Tag), lidando com ecossistemas complexos integrados ao Hub de Veículos corporativo." data-en="Engineering and maintenance of large-scale financial platforms (iCarros and Itaú Tag), dealing with complex ecosystems integrated with the corporate Vehicle Hub.">
+                Engenharia e sustentação de plataformas financeiras de larga escala (iCarros e Itaú Tag), lidando com ecossistemas complexos integrados ao Hub de Veículos corporativo.
+              </li>
+              <li data-pt="Garantia contínua de conformidade das aplicações com padrões corporativos extremamente rigorosos de segurança cibernética, proteção e integridade de dados sensíveis e alta performance operacional." data-en="Continuous assurance of application compliance with extremely rigorous corporate cybersecurity standards, sensitive data protection and integrity, and high operational performance.">
+                Garantia contínua de conformidade das aplicações com padrões corporativos extremamente rigorosos de segurança cibernética, proteção e integridade de dados sensíveis e alta performance operacional.
+              </li>
+              <li data-pt="Contribuição ativa no Design System corporativo através da modelagem de componentes padronizados, reduzindo a superfície de erro e inconsistências lógicas em múltiplos times de engenharia." data-en="Active contribution to the corporate Design System through modeling standardized components, reducing error surface and logical inconsistencies across multiple engineering teams.">
+                Contribuição ativa no Design System corporativo através da modelagem de componentes padronizados, reduzindo a superfície de erro e inconsistências lógicas em múltiplos times de engenharia.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Exp 3 -->
+        <div class="relative pl-10 group">
+          <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-white dark:bg-[var(--color-bg-dark)] border-2 border-primary group-hover:bg-primary transition-colors"></div>
+          <div class="space-y-1.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-bold text-sm text-gray-900 dark:text-white" data-pt="Desenvolvedor Front-end" data-en="Front-end Developer">
+                Desenvolvedor Front-end
+              </h3>
+              <span class="text-xs font-mono text-gray-400">05/2021 – 08/2022</span>
+            </div>
+            <p class="text-xs font-medium text-primary">Meta</p>
+            <ul class="list-disc list-outside pl-4 text-xs text-gray-600 dark:text-gray-400 space-y-1">
+              <li data-pt="Construção de arquiteturas robustas e escaláveis com React e Vue.js para produtos de grande visibilidade (Marketplace e plataformas proprietárias)." data-en="Building robust and scalable architectures with React and Vue.js for high-visibility products (Marketplace and proprietary platforms).">
+                Construção de arquiteturas robustas e escaláveis com React e Vue.js para produtos de grande visibilidade (Marketplace e plataformas proprietárias).
+              </li>
+              <li data-pt="Revisão técnica de código e redução de redundâncias críticas, elevando o nível de estabilidade de código em produção." data-en="Technical code review and reduction of critical redundancies, raising the level of stability of production code.">
+                Revisão técnica de código e redução de redundâncias críticas, elevando o nível de estabilidade de código em produção.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Exp 4 -->
+        <div class="relative pl-10 group">
+          <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-white dark:bg-[var(--color-bg-dark)] border-2 border-primary group-hover:bg-primary transition-colors"></div>
+          <div class="space-y-1.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-bold text-sm text-gray-900 dark:text-white" data-pt="Desenvolvedor Front-end" data-en="Front-end Developer">
+                Desenvolvedor Front-end
+              </h3>
+              <span class="text-xs font-mono text-gray-400">11/2019 – 05/2021</span>
+            </div>
+            <p class="text-xs font-medium text-primary">Exedio</p>
+            <ul class="list-disc list-outside pl-4 text-xs text-gray-600 dark:text-gray-400 space-y-1">
+              <li data-pt="Atuação especializada na implementação e desenho de arquiteturas de storefronts customizados integrados à plataforma SAP Commerce (Hybris)." data-en="Specialized acting in the implementation and architecture design of customized storefronts integrated with the SAP Commerce (Hybris) platform.">
+                Atuação especializada na implementação e desenho de arquiteturas de storefronts customizados integrados à plataforma SAP Commerce (Hybris).
+              </li>
+              <li data-pt="Otimização avançada de performance visual e implementação de layouts complexos e robustos direcionados a grandes portais de e-commerce e Marketplaces nas modalidades B2B e B2C." data-en="Advanced optimization of visual performance and implementation of complex and robust layouts targeted at large e-commerce and Marketplace portals in B2B and B2C modalities.">
+                Otimização avançada de performance visual e implementação de layouts complexos e robustos direcionados a grandes portais de e-commerce e Marketplaces nas modalidades B2B e B2C.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Exp 5 -->
+        <div class="relative pl-10 group">
+          <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-white dark:bg-[var(--color-bg-dark)] border-2 border-primary group-hover:bg-primary transition-colors"></div>
+          <div class="space-y-1.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-bold text-sm text-gray-900 dark:text-white" data-pt="Desenvolvedor Front-end Jr" data-en="Junior Front-end Developer">
+                Desenvolvedor Front-end Jr
+              </h3>
+              <span class="text-xs font-mono text-gray-400">11/2017 – 07/2019</span>
+            </div>
+            <p class="text-xs font-medium text-primary">Compbyte Limited</p>
+            <ul class="list-disc list-outside pl-4 text-xs text-gray-600 dark:text-gray-400 space-y-1">
+              <li data-pt="Atuação ponta a ponta no ciclo completo de desenvolvimento de software (SDLC), desde a concepção visual e arquitetura de telas (UI/UX Design) até a codificação e deploy final das aplicações." data-en="End-to-end contribution throughout the software development life cycle (SDLC), from visual design and layout architecture (UI/UX Design) to final coding and application deployment.">
+                Atuação ponta a ponta no ciclo completo de desenvolvimento de software (SDLC), desde a concepção visual e arquitetura de telas (UI/UX Design) até a codificação e deploy final das aplicações.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-primary pl-3" data-pt="Educação e Formação Acadêmica" data-en="Education">
+        Educação e Formação Acadêmica
+      </h2>
+      <div class="bg-gray-50/50 dark:bg-white/[0.02] p-5 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3">
+        <div class="flex flex-wrap items-start justify-between gap-2">
+          <div>
+            <h3 class="font-bold text-sm text-gray-900 dark:text-white" data-pt="Graduação em Segurança Cibernética" data-en="Bachelor's Degree in Cybersecurity">
+              Graduação em Segurança Cibernética
+            </h3>
+            <p class="text-xs text-primary font-medium mt-1">FIAP – Faculdade de Informática e Administração Paulista</p>
+          </div>
+          <span class="text-xs font-mono text-gray-400">06/2025 – 12/2026 (<span data-pt="Previsão de Conclusão" data-en="Expected Completion">Previsão</span>)</span>
+        </div>
+        <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed pt-2 border-t border-gray-100 dark:border-gray-800/80"
+           data-pt="Foco avançado em Segurança de Aplicações (AppSec), Análise de Riscos, Governança, Criptografia, Resposta a Incidentes e Arquitetura de Redes. Desenvolvimento prático de auditorias técnicas e relatórios de vulnerabilidade baseados no framework OWASP."
+           data-en="Advanced focus on Application Security (AppSec), Risk Analysis, Governance, Cryptography, Incident Response, and Network Architecture. Practical development of technical audits and vulnerability reports based on the OWASP framework.">
+          Foco avançado em Segurança de Aplicações (AppSec), Análise de Riscos, Governança, Criptografia, Resposta a Incidentes e Arquitetura de Redes. Desenvolvimento prático de auditorias técnicas e relatórios de vulnerabilidade baseados no framework OWASP.
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
